@@ -59,6 +59,26 @@ module Dalli
     	_keys.map{|k| delete(k)}.reject{|y| !y}.count
     end
 
+    # Returns a Hash representing sum of stats of each server in ring. 
+    def cluster_stats(type=nil)
+      hash = {'cluster_size' => @servers.length, 'active_servers' => 0}
+      ignore = ['accepting_conns', 'pointer_size', 'version', 'pid', 'time']
+      stats(type).each do |key,val|
+        unless val.nil?
+          hash['active_servers'] += 1
+          val.each do |k,v|
+            next if ignore.include?(k)
+            if hash.has_key?(k) 
+              hash[k] += v.match('\.').nil? ? Integer(v) : Float(v) rescue v
+            else
+              hash[k] = v.match('\.').nil? ? Integer(v) : Float(v) rescue v
+            end
+          end
+        end
+      end
+      hash
+    end
+
     private 
 
     def telnet(server)

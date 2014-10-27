@@ -15,6 +15,8 @@ describe 'dalli-extra' do
   it {should respond_to(:keys)}
   it {should respond_to(:pairs)}
   it {should respond_to(:delete_matched)}
+  it {should respond_to(:cluster_stats)}
+
 
   it 'should get all keys' do
   	keys = dc.keys
@@ -42,5 +44,11 @@ describe 'dalli-extra' do
 
   it 'should delete matched keys' do
   	dc.delete_matched(/dalli-extra/).should be 3
+  end
+
+  it 'should return a hash with cluster stats' do 
+    stats = dc.cluster_stats
+    stats.should_not be(nil)
+    stats.should be_a(Hash)
   end
 end
