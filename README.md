@@ -21,7 +21,6 @@ Or install it yourself as:
     $ gem install dalli-extra
 
 ## Usage
-	```ruby
 	require 'dalli'
 	require 'dalli/extra'
 	dc = Dalli::Client.new(['localhost:11211','localhost:11212'], :expires_in => 300)
@@ -36,6 +35,8 @@ Or install it yourself as:
 
 	count = dc.delete_matched(/abc/) or
 	count = dc.delete_macthed('abc')
+
+	stats = dc.cluster_stats
 	
 ## Contributing
 
