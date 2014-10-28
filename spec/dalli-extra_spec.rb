@@ -4,13 +4,14 @@ require 'dalli/extra'
 
 describe 'dalli-extra' do 
 
-  subject(:dc) { Dalli::Client.new('localhost:11211', :expires_in => 300) }
-
   before(:all) do 
-    dc.set('dalli-extra-abc', 123)
-    dc.set('dalli-extra-abcd', 1234)
-    dc.set('dalli-extra-xyz', 123)
+    @dc = Dalli::Client.new('localhost:11211', :expires_in => 300)
+    @dc.set('dalli-extra-abc', 123)
+    @dc.set('dalli-extra-abcd', 1234)
+    @dc.set('dalli-extra-xyz', 123)
   end
+
+  subject(:dc) { (@dc) }
 
   it {should respond_to(:keys)}
   it {should respond_to(:pairs)}
