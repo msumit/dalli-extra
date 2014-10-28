@@ -1,4 +1,5 @@
 # Dalli::Extra
+[![Build Status](https://travis-ci.org/msumit/dalli-extra.svg?branch=master)](https://travis-ci.org/msumit/dalli-extra)
 
 A small gem which adds some much needed methods to Dalli. The idea of this gem came after reading this post http://www.darkcoding.net/software/memcached-list-all-keys/ and seeing a similar gem "https://github.com/seratch/dallish"  
 
