@@ -11,6 +11,6 @@ rvm:
   - ruby-head
   - jruby-head
   - ree
-services:
-  - memcache
+install: gem install rspec  
+services: memcached
 script: bundle exec rspec spec/dalli-extra_spec.rb
